@@ -1,25 +1,51 @@
 package main
 
 import (
+	"2015-aoc/d1"
+	"2015-aoc/d2"
 	"2015-aoc/d3"
+	"fmt"
 	"log"
 	"os"
 )
 
-func inputReader(filePath string) (content string) {
+// inputReader reads the input file for a given day.
+func inputReader(day string) string {
+	filePath := fmt.Sprintf("d%s/%s.txt", day, day)
 	data, err := os.ReadFile(filePath)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Error reading input for day %s: %v", day, err)
 	}
+	return string(data)
+}
 
-	content = string(data)
-	return
+// solutionRunner defines a function signature for a day's solution part.
+type solutionRunner func(string)
+
+// dayRunners maps each day to its part 1 and part 2 solutions.
+var dayRunners = map[string][2]solutionRunner{
+	"1": {d1.P1, d1.P2},
+	"2": {d2.P1, d2.P2},
+	"3": {d3.P1, d3.P2},
+	// Add new days here
 }
 
 func main() {
-	filePath := "d3/3.txt"
-	content := inputReader(filePath)
+	if len(os.Args) < 2 {
+		log.Fatal("Usage: go run main.go <day>")
+	}
+	day := os.Args[1]
 
-	d3.P1(content)
-	d3.P2(content)
+	runners, ok := dayRunners[day]
+	if !ok {
+		log.Fatalf("No solution found for day %s", day)
+	}
+
+	content := inputReader(day)
+
+	fmt.Printf("--- Day %s ---\n", day)
+	fmt.Println("Part 1:")
+	runners[0](content)
+	fmt.Println("Part 2:")
+	runners[1](content)
 }
