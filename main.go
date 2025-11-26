@@ -6,6 +6,7 @@ import (
 	"2015-aoc/d3"
 	"2015-aoc/d4"
 	"2015-aoc/d5"
+	"2015-aoc/d6"
 	"fmt"
 	"log"
 	"os"
@@ -31,6 +32,7 @@ var dayRunners = map[string][2]solutionRunner{
 	"3": {d3.P1, d3.P2},
 	"4": {d4.P1, d4.P2},
 	"5": {d5.P1, d5.P2},
+	"6": {d6.P1, d6.P2},
 	// Add new days here
 }
 
