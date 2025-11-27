@@ -32,14 +32,6 @@ func P1(content string) {
 	// create a 2d slice of size 1000x1000 called lights
 	// 0 is off, 1 is on!
 
-	// parse input by newline
-	// and then by spaces:
-	// formats of instructinos
-	// turn off 301,3 through 808,453
-	// turn on 351,678 through 951,908
-	// toggle 720,196 through 897,994
-
-	// for each instruction, parse it to figure out what to do, execute it, and go to next one
 	instructions := strings.Split(content, "\n")
 	for _, i := range instructions {
 		// parse it
